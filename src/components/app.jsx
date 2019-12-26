@@ -1,8 +1,9 @@
 import React from 'react';
-import FlatList from './flatList';
-import MapObject from './marker';
-import flats from '../../data/flats';
 import GoogleMapReact from 'google-map-react';
+import FlatList from './flatList';
+import Marker from './marker';
+import flats from '../../data/flats';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -16,20 +17,15 @@ export default class App extends React.Component {
     };
   }
 
-  selectFlat = (event) => {
-    this.setState({selectedFlat: event});
-  }
-
   componentWillMount() {
-    if (!this.state.lat) {
+    if (!this.state.lat || !this.state.lng) {
       this.setState({lat: this.state.flats[0].lat});
       this.setState ({lng: this.state.flats[0].lng});
     }
-  }
 
-  setCoords = () => {
-    this.setState({ lat: this.state.selectedFlat.lat });
-    this.setState({ lng: this.state.selectedFlat.lng });
+    if (!this.state.selectedFlat) {
+      this.setState({ selectedFlat: this.state.flats[0]})
+    }
   }
 
   center() {
@@ -39,6 +35,12 @@ export default class App extends React.Component {
     };
   }
 
+  selectFlat = (event) => {
+    this.setState({ selectedFlat: event });
+    this.setState({ lat: event.lat });
+    this.setState({ lng: event.lng });
+  }
+
 
   render() {
     return (
@@ -46,6 +48,7 @@ export default class App extends React.Component {
           <FlatList flats={this.state.flats} selectFlat={this.selectFlat}  />
           <div className="map-container">
             <GoogleMapReact defaultCenter={this.center()} defaultZoom={12}>
+              <Marker lat={this.state.lat} lng={this.state.lng} />
             </GoogleMapReact>
           </div>
         </div>
