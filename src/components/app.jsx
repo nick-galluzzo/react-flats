@@ -10,21 +10,19 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      flats: flats,
-      lat: null,
-      lng: null,
-      selectedFlat: null
+      flats,
+      selectedFlat: flats[0]
     };
   }
 
   componentWillMount() {
     if (!this.state.lat || !this.state.lng) {
-      this.setState({lat: this.state.flats[0].lat});
-      this.setState ({lng: this.state.flats[0].lng});
+      this.setState({ lat: this.state.selectedFlat.lat });
+      this.setState ({ lng: this.state.selectedFlat.lng });
     }
 
     if (!this.state.selectedFlat) {
-      this.setState({ selectedFlat: this.state.flats[0]})
+      this.setState({ selectedFlat: this.state.flats[0] });
     }
   }
 
@@ -35,10 +33,8 @@ export default class App extends React.Component {
     };
   }
 
-  selectFlat = (event) => {
-    this.setState({ selectedFlat: event });
-    this.setState({ lat: event.lat });
-    this.setState({ lng: event.lng });
+  selectFlat = (index) => {
+    this.setState({ selectedFlat: this.state.flats[index] });
   }
 
 
@@ -48,7 +44,7 @@ export default class App extends React.Component {
           <FlatList flats={this.state.flats} selectFlat={this.selectFlat}  />
           <div className="map-container">
             <GoogleMapReact defaultCenter={this.center()} defaultZoom={12}>
-              <Marker lat={this.state.lat} lng={this.state.lng} />
+              <Marker lat={this.state.selectedFlat.lat} lng={this.state.selectedFlat.lng} />
             </GoogleMapReact>
           </div>
         </div>

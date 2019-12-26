@@ -8,7 +8,7 @@ export default class Flat extends React.Component {
   }
 
   handleClick = () => {
-    this.props.selectFlat(this.props);
+    this.props.selectFlat(this.props.index);
   }
 
   render() {
