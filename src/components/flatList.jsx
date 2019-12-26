@@ -21,6 +21,7 @@ export default class FlatList extends React.Component {
             priceCurrency={priceCurrency}
             lat={lat}
             lng={lng}
+            selectFlat={this.props.selectFlat}
             />;
         })
       }

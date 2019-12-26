@@ -7,6 +7,10 @@ export default class Flat extends React.Component {
     };
   }
 
+  handleClick = () => {
+    this.props.selectFlat(this.props);
+  }
+
   render() {
     const { name, price, priceCurrency, lat, lng } = this.props;
     return (
@@ -15,7 +19,7 @@ export default class Flat extends React.Component {
           <div className="card-description">
             <h2>{name}</h2>
           </div>
-        <a className="card-link" href="#" lat={lat} lng={lng}></a>
+        <a className="card-link" href="#" onClick={this.handleClick}></a>
         </div>
     );
   }
