@@ -20,11 +20,16 @@ export default class App extends React.Component {
     this.setState({selectedFlat: event});
   }
 
-  setCoords = () => {
-    if (this.state.lat === null) {
-      this.setState({lat: 28.5});
-      this.setState({lng: -81.3});
+  componentWillMount() {
+    if (!this.state.lat) {
+      this.setState({lat: this.state.flats[0].lat});
+      this.setState ({lng: this.state.flats[0].lng});
     }
+  }
+
+  setCoords = () => {
+    this.setState({ lat: this.state.selectedFlat.lat });
+    this.setState({ lng: this.state.selectedFlat.lng });
   }
 
   center() {
@@ -34,10 +39,11 @@ export default class App extends React.Component {
     };
   }
 
+
   render() {
     return (
         <div>
-          <FlatList flats={this.state.flats} selectFlat={this.selectFlat} coords={this.setCoords()} />
+          <FlatList flats={this.state.flats} selectFlat={this.selectFlat}  />
           <div className="map-container">
             <GoogleMapReact defaultCenter={this.center()} defaultZoom={12}>
             </GoogleMapReact>
