@@ -14,9 +14,9 @@ export default class Flat extends React.Component {
   render() {
     const { name, price, priceCurrency, lat, lng } = this.props;
     return (
-        <div className="card" style={this.getStyle()}>
-          <div className="card-category">{`${price} ${priceCurrency}`}</div>
-          <div className="card-description">
+      <div className={`card ${this.props.active ? ' active' : ''}`} style={this.getStyle()}>
+        <div className="card-category">{`${price} ${priceCurrency}`}</div>
+        <div className="card-description">
             <h2>{name}</h2>
           </div>
         <a className="card-link" href="#" onClick={this.handleClick}></a>

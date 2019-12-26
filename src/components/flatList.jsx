@@ -7,23 +7,25 @@ export default class FlatList extends React.Component {
     super(props);
   }
 
-
   render() {
     const { flats } = this.props;
 
     return (
       <div className="flat-list">
         {flats.map(({ name, imageUrl, price, priceCurrency, lat, lng}, index) => {
-          return <Flat
+          return ( <Flat
             index={index}
             name={name}
+            key={lat}
             imageUrl={imageUrl}
             price={price}
             priceCurrency={priceCurrency}
             lat={lat}
             lng={lng}
             selectFlat={this.props.selectFlat}
-            />;
+            active={name === this.props.selectedFlat.name}
+            />
+          );
         })
       }
     </div>
