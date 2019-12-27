@@ -4,7 +4,6 @@ import FlatList from './flatList';
 import Marker from './marker';
 import flats from '../../data/flats';
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -13,17 +12,6 @@ export default class App extends React.Component {
       flats,
       selectedFlat: flats[0]
     };
-  }
-
-  componentWillMount() {
-    if (!this.state.lat || !this.state.lng) {
-      this.setState({ lat: this.state.selectedFlat.lat });
-      this.setState ({ lng: this.state.selectedFlat.lng });
-    }
-
-    if (!this.state.selectedFlat) {
-      this.setState({ selectedFlat: this.state.flats[0] });
-    }
   }
 
   selectFlat = (index) => {
@@ -36,7 +24,6 @@ export default class App extends React.Component {
       lng: this.state.selectedFlat.lng
     };
   }
-
 
   render() {
     return (
@@ -55,7 +42,6 @@ export default class App extends React.Component {
             </GoogleMapReact>
           </div>
         </div>
-
     );
   }
 }
