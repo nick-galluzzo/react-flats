@@ -20,8 +20,6 @@ export default class FlatList extends React.Component {
             imageUrl={imageUrl}
             price={price}
             priceCurrency={priceCurrency}
-            lat={lat}
-            lng={lng}
             selectFlat={this.props.selectFlat}
             active={name === this.props.selectedFlat.name}
             />
