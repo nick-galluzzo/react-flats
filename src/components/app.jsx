@@ -27,21 +27,21 @@ export default class App extends React.Component {
 
   render() {
     return (
-        <div>
-          <FlatList
-            flats={this.state.flats}
-            selectFlat={this.selectFlat}
-            selectedFlat={this.state.selectedFlat}
-          />
-          <div className="map-container">
-            <GoogleMapReact defaultCenter={this.center()} defaultZoom={12}>
-              <Marker
-                lat={this.state.selectedFlat.lat}
-                lng={this.state.selectedFlat.lng}
-              />
-            </GoogleMapReact>
-          </div>
+      <div>
+        <FlatList
+          flats={this.state.flats}
+          selectFlat={this.selectFlat}
+          selectedFlat={this.state.selectedFlat}
+        />
+        <div className="map-container">
+          <GoogleMapReact defaultCenter={this.center()} defaultZoom={12}>
+            <Marker
+              lat={this.state.selectedFlat.lat}
+              lng={this.state.selectedFlat.lng}
+            />
+          </GoogleMapReact>
         </div>
+      </div>
     );
   }
 }
