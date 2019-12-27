@@ -26,6 +26,10 @@ export default class App extends React.Component {
     }
   }
 
+  selectFlat = (index) => {
+    this.setState({ selectedFlat: this.state.flats[index] });
+  }
+
   center() {
     return {
       lat: this.state.selectedFlat.lat,
@@ -33,9 +37,6 @@ export default class App extends React.Component {
     };
   }
 
-  selectFlat = (index) => {
-    this.setState({ selectedFlat: this.state.flats[index] });
-  }
 
   render() {
     return (
