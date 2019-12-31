@@ -8,13 +8,14 @@ export function listFlats() {
   // type: LIST_FLATS,
   // payload: flats
   return fetch('https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/flats.json')
-  .then(response => response.json())
-  .then((data) => {
-    return {type: LIST_FLATS,
-    payload: data
-  };
-  });
-};
+    .then(response => response.json())
+    .then((data) => {
+      return {
+        type: LIST_FLATS,
+        payload: data
+      };
+    });
+}
 
 export const selectFlat = (flat) => ({
   type: SELECT_FLAT,
